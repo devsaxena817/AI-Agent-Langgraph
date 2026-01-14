@@ -9,3 +9,7 @@ env/
 .idea/
 .vscode/
 *.log
+# Virtual environment
+myenv/
+venv/
+.env
