@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 from langchain_core.messages import BaseMessage, HumanMessage
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
@@ -38,12 +38,15 @@ def submit_async_task(coro):
 # -------------------
 # 1. LLM
 # -------------------
-llm = ChatOpenAI()
+llm=ChatGoogleGenerativeAI(
+    model="models/gemini-2.5-flash",
+    
+)
 
 # -------------------
 # 2. Tools
 # -------------------
-search_tool = DuckDuckGoSearchRun(region="us-en")
+search_tool = DuckDuckGoSearchRun()
 
 
 @tool
